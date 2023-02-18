@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title th:text="#{list.title}"></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script th:src="@{/script/script.js}"></script>
+</head>
+<body>
+	<div th:insert="~{header :: header}"></div> <br><br>
+	<h3 th:text="#{available} + ' ' + ${listCarsByMake[0].make} + ' ' + #{models}" align="center"></h3> <br><br>
+  	<div class="card mb-3" th:each="car : ${listCarsByMake}">
+  		<img class="card-img-top" th:src="@{${car.path}}" style="max-width : 520px; max-height : 280px">
+ 		 <div class="card-body">
+	    	<h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
+	    	<h6 th:text="#{details}"></h6>
+	    	<table>
+	    		<tr>
+	    			<td><p th:text="${car.km} + ' km '"></p></td>
+	    			<td><p th:text="${car.hp} + ' ' + #{hp}"></p></td>
+	    		</tr>
+	    		<tr>
+	    			<td><p th:text="#{bodytype} + ': ' + ${car.bodyType}"></p></td>
+	    		</tr>
+	    	</table>
+	    	<h5 th:text="${car.price} + '€'"></h5>
+  		</div>
+  		<br><br>
+	</div>
+	<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

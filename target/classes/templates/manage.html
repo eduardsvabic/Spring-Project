@@ -1,0 +1,49 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ADMIN</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="/css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+	<h1 align="center">Manage Cars Database</h1>
+	<p>
+	<div align="center">
+		<a th:href="@{/add-car}">Add Car</a><br>
+		<a th:href="@{/}">Home</a><br>
+		<a th:href="@{/logout}">Log out</a>
+	</div>
+	<br><br>
+	<div align="center">
+		<table style="border : 3px solid black; width: 100%;">
+				<tr>
+					<th>ID</th>
+					<th>MAKE</th>
+					<th>MODEL</th>
+					<th>BODY TYPE</th>
+					<th>PRICE</th>
+					<th>KM</th>
+					<th>HP</th>
+					<th>IMG</th>
+					<th style="width : 20%;">OPERATION</th>
+				</tr>
+				<tr th:each="car : ${listCars}">
+					<td th:text="${car.id}"></td>
+					<td th:text="${car.make}"></td>
+					<td th:text="${car.model}"></td>
+					<td th:text="${car.bodyType}"></td>	
+					<td th:text="${car.price}"></td>
+					<td th:text="${car.km}"></td>
+					<td th:text="${car.hp}"></td>
+					<td th:text="${car.path}"></td>
+					<td>
+						<a th:href="@{'/edit/' + ${car.id}}">EDIT</a>
+						<a th:href="@{'/delete/' + ${car.id}}">DELETE</a>
+					</td>
+				</tr>
+				
+		</table>
+	</div>
+</body>
+</html>
